@@ -1,44 +1,63 @@
 import streamlit as st
 
-# 1. 화면 설정
-st.set_page_config(page_title="외할머니 안심 연락", layout="centered")
+# 1. 화면 설정 (브라우저 탭에 표시되는 이름)
+st.set_page_config(page_title="가족 안심 연락", layout="centered")
 
-# 2. 디자인
-st.markdown("""
-    <style>
-    .sms-btn > button {
-        width: 100%; height: 280px; font-size: 55px !important; font-weight: bold;
-        background-color: #007AFF !important; color: white !important;
-        border-radius: 40px; border: 10px solid #0056b3; margin-bottom: 30px;
-    }
-    .phone-btn > button {
-        width: 100%; height: 280px; font-size: 55px !important; font-weight: bold;
-        background-color: #4CAF50 !important; color: white !important;
-        border-radius: 40px; border: 10px solid #2E7D32;
-    }
-    .title { font-size: 45px !important; text-align: center; font-weight: bold; margin-bottom: 40px; }
-    </style>
-    """, unsafe_allow_html=True)
-
-st.markdown('<p class="title">👵 외할머니 안심 버튼</p>', unsafe_allow_html=True)
-
-# --- 설정 (대장님 실제 번호로 수정 필수!) ---
+# 2. 대장님 정보 (실제 번호로 수정되어 있는지 꼭 확인!)
 my_number = "010-8106-1790" 
-grandson_name = "손주"
+grandson_name = "손주 현준이" # '지원이'처럼 대장님 성함으로 바꿔도 좋아요!
+sms_body = "손주야, 시간 될 때 전화 한 통 해주렴~ ❤️"
 
-# 3. 문자 보내기 버튼
-st.markdown('<div class="sms-btn">', unsafe_allow_html=True)
-if st.button(f"💬\n{grandson_name}에게\n문자하기"):
-    sms_body = "할머니가 적적하시대요~ 시간날 때 전화 한 통 해주세요!"
-    sms_link = f"sms:{my_number}?body={sms_body}"
+# 3. 전체 디자인 및 원터치 버튼 스타일
+st.markdown(f"""
+    <style>
+    .main-title {{
+        font-size: 48px !important;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        color: #333;
+    }}
+    .big-button {{
+        display: block;
+        width: 100%;
+        height: 280px;
+        line-height: 280px;
+        text-align: center;
+        font-size: 55px !important;
+        font-weight: bold;
+        text-decoration: none !important;
+        border-radius: 50px;
+        margin-bottom: 40px;
+        color: white !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }}
+    .sms-color {{
+        background-color: #007AFF;
+        border: 10px solid #0056b3;
+    }}
+    .phone-color {{
+        background-color: #4CAF50;
+        border: 10px solid #2E7D32;
+    }}
+    .footer {{
+        text-align: center;
+        font-size: 20px;
+        color: #888;
+        margin-top: 30px;
+    }}
+    </style>
     
-    # 아무 안내문구 없이 바로 전송 링크만 띄웁니다.
-    st.markdown(f'<a href="{sms_link}" style="font-size:40px; color:white; background:#007AFF; padding:25px; border-radius:20px; text-decoration:none; display:block; text-align:center; font-weight:bold;">👉 여기 눌러서 문자 전송</a>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
-
-# 4. 전화 걸기 버튼
-st.markdown('<div class="phone-btn">', unsafe_allow_html=True)
-if st.button(f"📞\n{grandson_name}에게\n전화걸기"):
-    # 전화는 누르자마자 통화 연결 팝업이 뜨도록 링크를 바로 보여줍니다.
-    st.markdown(f'<a href="tel:{my_number}" style="font-size:50px; color:white; background:#2E7D32; padding:25px; border-radius:20px; text-decoration:none; display:block; text-align:center; font-weight:bold;">☎️ 지금 바로 통화하기</a>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+    <p class="main-title">✨ 우리 손주 연결 ✨</p>
+    
+    <a href="sms:{my_number}?body={sms_body}" class="big-button sms-color">
+        💬 문자 보내기
+    </a>
+    
+    <a href="tel:{my_number}" class="big-button phone-color">
+        📞 전화 걸기
+    </a>
+    
+    <p class="footer">버튼을 한 번만 누르면 바로 연결됩니다.</p>
+    """, unsafe_allow_html=True)
