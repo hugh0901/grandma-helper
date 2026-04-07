@@ -6,7 +6,7 @@ st.set_page_config(page_title="가족 안심 연락", layout="centered")
 # 2. 대장님 정보 (실제 번호로 수정되어 있는지 꼭 확인!)
 my_number = "010-8106-1790" 
 grandson_name = "손주 현준이" # '지원이'처럼 대장님 성함으로 바꿔도 좋아요!
-sms_body = "손주야, 시간 될 때 전화 한 통 해주렴~ ❤️"
+sms_body = "현준아, 시간 될 때 전화 한 통 해주렴~ ❤️"
 
 # 3. 전체 디자인 및 원터치 버튼 스타일
 st.markdown(f"""
